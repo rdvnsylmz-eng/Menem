@@ -999,7 +999,7 @@ h1, h2, h3, h4, .section__header {
 /* ========== Coaches teaser ========== */
 .coaches-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: var(--space-5);
 }
 
@@ -1407,17 +1407,24 @@ h1, h2, h3, h4, .section__header {
   width: min(100% - 2rem, var(--container));
   margin-inline: auto;
   padding-block: var(--space-10);
+  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   align-items: center;
   gap: var(--space-8);
   position: relative;
+  box-sizing: border-box;
 }
 
 .header__container::before,
 .header__image::before,
 .bg__blur {
   display: none !important;
+}
+
+.header__content {
+  min-width: 0;
+  padding-right: var(--space-4);
 }
 
 .header__content h4 {
@@ -1451,7 +1458,9 @@ h1, h2, h3, h4, .section__header {
 .header__content p {
   margin-bottom: var(--space-4);
   color: var(--color-text-muted-dark);
-  max-width: 40rem;
+  max-width: 38rem;
+  line-height: 1.7;
+  overflow-wrap: break-word;
 }
 
 .header__content .btn {
@@ -1460,7 +1469,10 @@ h1, h2, h3, h4, .section__header {
 
 body > .header__container,
 body > header.header__container {
+  width: 100%;
+  max-width: none;
   background: var(--color-primary);
+  padding-inline: max(1.25rem, calc((100% - var(--container)) / 2 + 1.25rem));
 }
 
 .header__image {
@@ -1511,10 +1523,17 @@ body > header.header__container {
   width: min(100% - 2rem, var(--container));
   margin-inline: auto;
   padding-block: var(--space-10);
+  padding-inline: clamp(1.25rem, 4vw, 2rem);
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
   gap: var(--space-8);
   align-items: center;
+  box-sizing: border-box;
+}
+
+.review__content {
+  min-width: 0;
+  padding-right: var(--space-4);
 }
 
 .review__content h4 {
@@ -1534,10 +1553,12 @@ body > header.header__container {
 }
 
 .review__content p {
-  max-width: 48rem;
+  max-width: 42rem;
   margin-bottom: var(--space-4);
   color: var(--color-text-secondary);
   white-space: pre-line;
+  line-height: 1.7;
+  overflow-wrap: break-word;
 }
 
 .review__content .person-name-light,
@@ -1896,7 +1917,7 @@ body > header.header__container {
   }
 
   .coaches-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-4);
   }
 
@@ -2008,6 +2029,11 @@ body > header.header__container {
   .review__container {
     grid-template-columns: 1fr;
     gap: var(--space-5);
+  }
+
+  .header__content,
+  .review__content {
+    padding-right: 0;
   }
 
   .header__image {
