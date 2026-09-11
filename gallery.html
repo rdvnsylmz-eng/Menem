@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fotoğraf Galerisi | Menemen GSK</title>
+    <meta name="description" content="Menemen Gelişim Spor Kulübü fotoğraf galerisi ve arşivi — antrenmanlardan ve etkinliklerden kareler.">
+    <link rel="canonical" href="https://menemengsk.com/gallery.html">
+    <meta name="theme-color" content="#001e5b">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="tr_TR">
+    <meta property="og:site_name" content="Menemen GSK">
+    <meta property="og:title" content="Fotoğraf Galerisi | Menemen GSK">
+    <meta property="og:description" content="Antrenmanlardan ve etkinliklerden kareler.">
+    <meta property="og:url" content="https://menemengsk.com/gallery.html">
+    <meta property="og:image" content="https://menemengsk.com/assets/1.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Fotoğraf Galerisi | Menemen GSK">
+    <meta name="twitter:description" content="Antrenmanlardan ve etkinliklerden kareler.">
+    <meta name="twitter:image" content="https://menemengsk.com/assets/1.jpg">
+
+    <link rel="icon" href="assets/logo.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css?v=12">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QW8VXPZ7DR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-QW8VXPZ7DR');
+    </script>
+    <noscript><style>.reveal{opacity:1!important;transform:none!important;}</style></noscript>
+</head>
+<body class="gallery-page">
+    <div class="nav-wrapper"></div>
+
+    <header class="page-hero">
+      <div class="page-hero__inner">
+        <span class="section__eyebrow">Arşiv</span>
+        <h1>Fotoğraf Galerisi</h1>
+        <p>Antrenmanlardan ve etkinliklerden kareler.</p>
+      </div>
+    </header>
+
+    <div class="mgsk-photo-gallery reveal">
+        <div class="mgsk-main-image-wrapper">
+            <img src="assets/1.jpg" alt="Fotoğraf 1" class="mgsk-main-image active" width="1200" height="750">
+            <button class="mgsk-nav-button prev" type="button" aria-label="Önceki fotoğraf"><i class="ri-arrow-left-s-line" aria-hidden="true"></i></button>
+            <button class="mgsk-nav-button next" type="button" aria-label="Sonraki fotoğraf"><i class="ri-arrow-right-s-line" aria-hidden="true"></i></button>
+        </div>
+
+        <div class="mgsk-thumbnails-container">
+            <div class="mgsk-thumbnails">
+                <div class="mgsk-thumbnail-item active" data-index="0"><img src="assets/1.jpg" alt="Küçük Resim 1" loading="lazy"></div>
+                <div class="mgsk-thumbnail-item" data-index="1"><img src="assets/2.jpg" alt="Küçük Resim 2" loading="lazy"></div>
+                <div class="mgsk-thumbnail-item" data-index="2"><img src="assets/3.jpg" alt="Küçük Resim 3" loading="lazy"></div>
+                <div class="mgsk-thumbnail-item" data-index="3"><img src="assets/4.jpg" alt="Küçük Resim 4" loading="lazy"></div>
+                <div class="mgsk-thumbnail-item" data-index="4"><img src="assets/5.jpg" alt="Küçük Resim 5" loading="lazy"></div>
+                <div class="mgsk-thumbnail-item" data-index="5"><img src="assets/6.jpg" alt="Küçük Resim 6" loading="lazy"></div>
+                <div class="mgsk-thumbnail-item" data-index="6"><img src="assets/7.jpg" alt="Küçük Resim 7" loading="lazy"></div>
+                <div class="mgsk-thumbnail-item" data-index="7"><img src="assets/8.jpg" alt="Küçük Resim 8" loading="lazy"></div>
+                <div class="mgsk-thumbnail-item" data-index="8"><img src="assets/9.jpg" alt="Küçük Resim 9" loading="lazy"></div>
+                <div class="mgsk-thumbnail-item" data-index="9"><img src="assets/10.jpg" alt="Küçük Resim 10" loading="lazy"></div>
+                <div class="mgsk-thumbnail-item" data-index="10"><img src="assets/11.jpg" alt="Küçük Resim 11" loading="lazy"></div>
+                <div class="mgsk-thumbnail-item" data-index="11"><img src="assets/12.jpg" alt="Küçük Resim 12" loading="lazy"></div>
+                <div class="mgsk-thumbnail-item" data-index="12"><img src="assets/13.jpg" alt="Küçük Resim 13" loading="lazy"></div>
+                <div class="mgsk-thumbnail-item" data-index="13"><img src="assets/14.jpg" alt="Küçük Resim 14" loading="lazy"></div>
+                <div class="mgsk-thumbnail-item" data-index="14"><img src="assets/15.jpg" alt="Küçük Resim 15" loading="lazy"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+<script>
+    const mainImage = document.querySelector('.mgsk-main-image');
+    const prevButton = document.querySelector('.mgsk-nav-button.prev');
+    const nextButton = document.querySelector('.mgsk-nav-button.next');
+    const thumbnailItems = document.querySelectorAll('.mgsk-thumbnail-item');
+
+    let currentIndex = 0;
+    const totalImages = thumbnailItems.length;
+
+    function updateGallery() {
+        const newSrc = thumbnailItems[currentIndex].querySelector('img').src;
+        mainImage.classList.remove('active');
+        setTimeout(() => {
+            mainImage.src = newSrc;
+            mainImage.alt = `Fotoğraf ${currentIndex + 1}`;
+            mainImage.classList.add('active');
+        }, 50);
+
+        thumbnailItems.forEach((item, index) => {
+            if (index === currentIndex) {
+                item.classList.add('active');
+                item.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            } else {
+                item.classList.remove('active');
+            }
+        });
+    }
+
+    function showNextImage() {
+        currentIndex = (currentIndex + 1) % totalImages;
+        updateGallery();
+    }
+
+    function showPrevImage() {
+        currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+        updateGallery();
+    }
+
+    prevButton.addEventListener('click', showPrevImage);
+    nextButton.addEventListener('click', showNextImage);
+
+    thumbnailItems.forEach(item => {
+        item.addEventListener('click', () => {
+            currentIndex = parseInt(item.dataset.index, 10);
+            updateGallery();
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', updateGallery);
+</script>
+    <script src="menu.js"></script>
+    <script src="footer.js?v=2"></script>
+    <script src="scroll-effects.js"></script>
+</body>
+</html>
