@@ -116,6 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const icon = menuToggle.querySelector("i");
     icon.classList.remove("ri-close-line");
     icon.classList.add("ri-menu-line");
+    document.body.classList.remove("nav-open");
     document.body.style.overflow = "";
     dropdownParents.forEach(function (item) {
       item.classList.remove("is-open");
@@ -131,6 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const icon = menuToggle.querySelector("i");
     icon.classList.remove("ri-menu-line");
     icon.classList.add("ri-close-line");
+    document.body.classList.add("nav-open");
     document.body.style.overflow = "hidden";
   }
 
