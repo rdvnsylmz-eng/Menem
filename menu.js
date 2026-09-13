@@ -5,8 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
-  const registerUrl =
-    "https://docs.google.com/forms/d/e/1FAIpQLSdpPS2x-J3qpGCiyXTKmGLGtFkNu_WfRdiz1YtsJW10LKcg7g/viewform?usp=sharing";
+  const registerUrl = "kayit.html";
 
   navWrapper.classList.add("site-header");
   navWrapper.innerHTML = `
@@ -30,8 +29,15 @@ document.addEventListener("DOMContentLoaded", function () {
         <i class="ri-menu-line" aria-hidden="true"></i>
       </button>
       <ul class="nav__links" id="primary-nav">
-        <li class="link"><a href="index.html">Ana Sayfa</a></li>
-        <li class="link has-dropdown">
+        <li class="mobile-nav-hero">
+          <img src="assets/logo.png" alt="" width="56" height="56" />
+          <div>
+            <p class="mobile-nav-hero__eyebrow">Menemen GSK</p>
+            <p class="mobile-nav-hero__title">Keşfet</p>
+          </div>
+        </li>
+        <li class="link" data-index="01"><a href="index.html">Ana Sayfa</a></li>
+        <li class="link has-dropdown" data-index="02">
           <a href="vizyon.html" aria-haspopup="true">Kulübümüz <i class="ri-arrow-down-s-line" aria-hidden="true"></i></a>
           <div class="dropdown" role="menu">
             <a href="vizyon.html" role="menuitem">Vizyon &amp; Misyon</a>
@@ -39,18 +45,58 @@ document.addEventListener("DOMContentLoaded", function () {
             <a href="index.html#yas-gruplari" role="menuitem">Yaş Grupları</a>
           </div>
         </li>
-        <li class="link"><a href="antrenor.html">Antrenörler</a></li>
-        <li class="link"><a href="gallery.html">Galeri</a></li>
-        <li class="link"><a href="iletisim.html">İletişim</a></li>
+        <li class="link" data-index="03"><a href="program.html">Antrenman Programı</a></li>
+        <li class="link" data-index="04"><a href="antrenor.html">Antrenörler</a></li>
+        <li class="link" data-index="05"><a href="duyurular.html">Duyurular</a></li>
+        <li class="link" data-index="06"><a href="gallery.html">Galeri</a></li>
+        <li class="link" data-index="07"><a href="iletisim.html">İletişim</a></li>
+        <li class="mobile-nav-aside">
+          <a class="mobile-nav-call" href="tel:+905321641555"><i class="ri-phone-fill" aria-hidden="true"></i> 0532 164 15 55</a>
+          <div class="mobile-nav-socials">
+            <a href="https://www.instagram.com/menemengelisimsk/" target="_blank" rel="noopener" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
+            <a href="https://www.youtube.com/@menemengsk" target="_blank" rel="noopener" aria-label="YouTube"><i class="ri-youtube-fill"></i></a>
+          </div>
+        </li>
         <li class="mobile-cta">
-          <a href="${registerUrl}" class="btn btn--primary" target="_blank" rel="noopener">Ön Kayıt</a>
+          <a href="kayit.html" class="btn btn--primary">Ön Kayıt</a>
         </li>
       </ul>
       <div class="nav__cta">
-        <a href="${registerUrl}" class="btn btn--primary" target="_blank" rel="noopener">Ön Kayıt</a>
+        <a href="kayit.html" class="btn btn--primary">Ön Kayıt</a>
       </div>
     </nav>
   `;
+
+  // Sitewide duyuru şeridi (duyurular sayfası hariç; sayfada yoksa ekle)
+  const onDuyurular = /duyurular\.html$/i.test(window.location.pathname);
+  if (!onDuyurular && !document.querySelector(".site-announce")) {
+    const announce = document.createElement("aside");
+    announce.className = "site-announce";
+    announce.setAttribute("aria-label", "Duyuru");
+    announce.innerHTML = `
+      <div class="container site-announce__inner">
+        <p><span class="site-announce__badge">Yeni</span> Ürkmez Spor Kulübü bünyemize katıldı — adı <strong>GÖKORDU Spor Kulübü</strong> olarak değiştirildi.</p>
+        <a href="duyurular.html">Detayı oku <i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+      </div>
+    `;
+    navWrapper.insertAdjacentElement("afterend", announce);
+  }
+
+  // Eski Google Form / target=_blank kayıt linklerini temizle
+  document.querySelectorAll('a[href*="docs.google.com/forms"], a[href*="viewform"]').forEach(function (link) {
+    const label = (link.textContent || "").toLowerCase();
+    if (label.includes("kayıt") || label.includes("kayit") || link.classList.contains("btn")) {
+      link.setAttribute("href", "kayit.html");
+      link.removeAttribute("target");
+      link.removeAttribute("rel");
+    }
+  });
+  document.querySelectorAll('a[href="kayit.html"]').forEach(function (link) {
+    link.removeAttribute("target");
+    if ((link.getAttribute("rel") || "").includes("noopener")) {
+      link.removeAttribute("rel");
+    }
+  });
 
   const overlay = document.createElement("div");
   overlay.className = "nav-overlay";

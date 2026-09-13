@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const registerUrl =
-    "https://docs.google.com/forms/d/e/1FAIpQLSdpPS2x-J3qpGCiyXTKmGLGtFkNu_WfRdiz1YtsJW10LKcg7g/viewform?usp=sharing";
+  const registerUrl = "kayit.html";
   const year = new Date().getFullYear();
 
   const footerHTML = `
@@ -15,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
             </span>
           </a>
           <p class="footer__tagline">
-            5 yaş ve üzeri çocuk ve gençler için UEFA lisanslı antrenörler eşliğinde profesyonel futbol altyapı eğitimi.
+            4 yaş ve üzeri çocuk ve gençler için UEFA lisanslı antrenörler eşliğinde profesyonel futbol altyapı eğitimi.
           </p>
           <div class="footer__socials">
             <a href="https://www.youtube.com/@menemengsk" target="_blank" rel="noopener" aria-label="YouTube"><i class="ri-youtube-fill" aria-hidden="true"></i></a>
@@ -30,13 +29,15 @@ document.addEventListener("DOMContentLoaded", function () {
               <li><a href="index.html">Ana Sayfa</a></li>
               <li><a href="vizyon.html">Vizyon &amp; Misyon</a></li>
               <li><a href="antrenor.html">Antrenörler</a></li>
-              <li><a href="${registerUrl}" target="_blank" rel="noopener">Ön Kayıt</a></li>
+              <li><a href="${registerUrl}">Ön Kayıt</a></li>
             </ul>
           </div>
           <div class="footer__col">
             <h4>Keşfet</h4>
             <ul>
               <li><a href="index.html#yas-gruplari">Yaş Grupları</a></li>
+              <li><a href="program.html">Antrenman Programı</a></li>
+              <li><a href="duyurular.html">Duyurular</a></li>
               <li><a href="gallery.html">Galeri</a></li>
               <li><a href="iletisim.html">İletişim</a></li>
             </ul>
@@ -62,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
               <a href="mailto:menemengsk@gmail.com">menemengsk@gmail.com</a>
             </li>
           </ul>
-          <a class="btn btn--primary footer__cta" href="${registerUrl}" target="_blank" rel="noopener">Ön Kayıt</a>
+          <a class="btn btn--primary footer__cta" href="${registerUrl}">Ön Kayıt</a>
         </div>
       </div>
 
