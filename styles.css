@@ -71,6 +71,8 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--utility-h) + var(--header-h) + 12px);
+  touch-action: manipulation;
+  -ms-touch-action: manipulation;
 }
 
 body {
@@ -81,12 +83,26 @@ body {
   background: var(--color-background);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  touch-action: manipulation;
+  -ms-touch-action: manipulation;
 }
 
 img {
   max-width: 100%;
   display: block;
   height: auto;
+}
+
+a,
+button,
+.menu-toggle,
+.btn,
+summary,
+label,
+input,
+select,
+textarea {
+  touch-action: manipulation;
 }
 
 a {
