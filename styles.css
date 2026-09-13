@@ -543,7 +543,7 @@ h1, h2, h3, h4, .section__header {
   background: rgba(0, 12, 32, 0.55);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  z-index: 1090;
+  z-index: 2090;
   opacity: 0;
   transition: opacity 0.35s var(--ease);
 }
@@ -2667,7 +2667,7 @@ body > header.header__container {
   .menu-toggle {
     order: 3;
     display: inline-flex;
-    z-index: 1102;
+    z-index: 2102;
     margin-left: 0;
   }
 
@@ -2686,9 +2686,14 @@ body > header.header__container {
   body.nav-open .site-header .nav__cta,
   body.nav-open .site-announce,
   body.nav-open .whatsapp-fab,
-  body.nav-open .back-to-top {
+  body.nav-open .back-to-top,
+  body.nav-open .popup-overlay {
     visibility: hidden;
     pointer-events: none;
+  }
+
+  body.nav-open .popup-overlay {
+    display: none !important;
   }
 
   body.nav-open .menu-toggle {
@@ -2704,6 +2709,7 @@ body > header.header__container {
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     pointer-events: auto;
+    z-index: 2102;
   }
 
   body.nav-open .menu-toggle:hover {
@@ -2744,7 +2750,7 @@ body > header.header__container {
     overflow-x: hidden;
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
-    z-index: 1101;
+    z-index: 2101;
     transform: translate3d(104%, 0, 0);
     visibility: hidden;
     pointer-events: none;
@@ -3000,6 +3006,20 @@ body > header.header__container {
     background: #ff7f24;
     border-color: #ff7f24;
     color: #fff;
+  }
+
+  /* Narrow phones: keep long labels like “Antrenman Programı” readable */
+  @media (max-width: 380px) {
+    .nav__links {
+      --nav-link-size: clamp(0.98rem, 4.6vw, 1.2rem);
+      --nav-index-gap: 2.1rem;
+      --nav-pad-x: 0.9rem;
+      letter-spacing: 0;
+    }
+
+    .nav__links .link > a {
+      letter-spacing: 0.02em;
+    }
   }
 
   /* Short phones: compress so the full menu fits without awkward overflow */

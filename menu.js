@@ -123,7 +123,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  function dismissPromoPopup() {
+    const popup = document.getElementById("popupOverlay");
+    if (popup && popup.style.display !== "none") {
+      popup.style.display = "none";
+    }
+  }
+
   function openMobileNav() {
+    dismissPromoPopup();
     navLinks.classList.add("active");
     overlay.classList.add("is-active");
     overlay.hidden = false;
