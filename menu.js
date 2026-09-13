@@ -116,13 +116,22 @@ document.addEventListener("DOMContentLoaded", function () {
     const icon = menuToggle.querySelector("i");
     icon.classList.remove("ri-close-line");
     icon.classList.add("ri-menu-line");
+    document.body.classList.remove("nav-open");
     document.body.style.overflow = "";
     dropdownParents.forEach(function (item) {
       item.classList.remove("is-open");
     });
   }
 
+  function dismissPromoPopup() {
+    const popup = document.getElementById("popupOverlay");
+    if (popup && popup.style.display !== "none") {
+      popup.style.display = "none";
+    }
+  }
+
   function openMobileNav() {
+    dismissPromoPopup();
     navLinks.classList.add("active");
     overlay.classList.add("is-active");
     overlay.hidden = false;
@@ -131,6 +140,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const icon = menuToggle.querySelector("i");
     icon.classList.remove("ri-menu-line");
     icon.classList.add("ri-close-line");
+    document.body.classList.add("nav-open");
     document.body.style.overflow = "hidden";
   }
 
