@@ -535,15 +535,14 @@ h1, h2, h3, h4, .section__header {
   background: rgba(255, 255, 255, 0.14);
 }
 
-/* Mobile drawer */
+/* Mobile drawer — no backdrop-filter: it sat above the menu (stacking context)
+   and made the whole drawer look like frosted glass on iOS / Instagram browser. */
 .nav-overlay {
   display: none;
   position: fixed;
   inset: 0;
   background: rgba(0, 12, 32, 0.55);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  z-index: 2090;
+  z-index: 1090;
   opacity: 0;
   transition: opacity 0.35s var(--ease);
 }
@@ -2676,10 +2675,23 @@ body > header.header__container {
     touch-action: none;
   }
 
-  body.nav-open .site-header {
+  /* Lift the whole header stacking context above the dim overlay so the
+     full-screen drawer is sharp (not blurred by a layer sitting on top). */
+  body.nav-open .site-header,
+  body.nav-open .nav-wrapper.site-header {
+    z-index: 2200;
     background: transparent;
     box-shadow: none;
     pointer-events: none;
+  }
+
+  /* Full-bleed opaque menu: overlay is unused and must never blur the drawer */
+  body.nav-open .nav-overlay {
+    display: none !important;
+    opacity: 0;
+    pointer-events: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
 
   body.nav-open .site-header .nav__logo,
@@ -2703,13 +2715,11 @@ body > header.header__container {
     width: 44px;
     height: 44px;
     border-radius: 12px;
-    background: rgba(0, 12, 32, 0.45);
+    background: rgba(0, 12, 32, 0.72);
     border: 1px solid rgba(255, 255, 255, 0.14);
     color: #fff;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
     pointer-events: auto;
-    z-index: 2102;
+    z-index: 2201;
   }
 
   body.nav-open .menu-toggle:hover {
