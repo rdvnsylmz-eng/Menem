@@ -236,6 +236,8 @@ h1, h2, h3, h4, .section__header {
   cursor: pointer;
   text-decoration: none;
   white-space: nowrap;
+  touch-action: manipulation;
+  max-width: 100%;
 }
 
 .btn:hover {
@@ -2395,32 +2397,66 @@ body > header.header__container {
 
 .gallery-filters {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.55rem;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  gap: 0.5rem;
   margin: 0 auto var(--space-5);
-  max-width: 1100px;
-  padding-inline: var(--space-4);
-  justify-content: center;
+  max-width: min(100% - 2rem, 720px);
+  padding: 0.15rem;
+  justify-content: stretch;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+
+.gallery-filters::-webkit-scrollbar {
+  display: none;
 }
 
 .gallery-filter-btn {
   appearance: none;
+  flex: 1 1 0;
+  min-width: 4.75rem;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid var(--color-border);
   background: var(--color-surface);
   color: var(--color-primary);
+  font-family: var(--font-sans);
   font-weight: 700;
-  font-size: 0.85rem;
-  padding: 0.55rem 0.95rem;
-  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  padding: 0.65rem 0.85rem;
+  border-radius: 999px;
   cursor: pointer;
-  transition: background var(--duration) var(--ease), color var(--duration) var(--ease), border-color var(--duration) var(--ease);
+  touch-action: manipulation;
+  white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(11, 18, 32, 0.04);
+  transition: background var(--duration) var(--ease), color var(--duration) var(--ease), border-color var(--duration) var(--ease), box-shadow var(--duration) var(--ease);
 }
 
-.gallery-filter-btn.is-active,
-.gallery-filter-btn:hover {
+.gallery-filter-btn.is-active {
   background: var(--color-primary);
   color: #fff;
   border-color: var(--color-primary);
+  box-shadow: 0 6px 16px rgba(0, 30, 91, 0.18);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .gallery-filter-btn:hover {
+    background: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary);
+  }
+}
+
+.gallery-filter-btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
 }
 
 .mgsk-thumbnail-item.is-hidden {
@@ -2549,14 +2585,16 @@ body > header.header__container {
   }
 
   .gallery-filters {
-    gap: 0.45rem;
-    padding-inline: var(--space-3);
+    gap: 0.4rem;
+    max-width: calc(100% - 1.5rem);
+    margin-inline: auto;
   }
 
   .gallery-filter-btn {
-    flex: 1 1 calc(50% - 0.45rem);
-    text-align: center;
+    flex: 1 1 0;
     min-width: 0;
+    padding-inline: 0.55rem;
+    font-size: 0.78rem;
   }
 
   .faq-item summary {
@@ -3266,14 +3304,30 @@ body > header.header__container {
     font-size: 2.15rem;
   }
 
-  .btn {
-    width: 100%;
+  /* Only stretch CTAs inside stacked action groups — never every .btn on the page */
+  .hero__actions,
+  .cta-band__actions,
+  .schedule-actions,
+  .kayit-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
   }
 
   .hero__actions .btn,
-  .cta-band__actions .btn {
+  .cta-band__actions .btn,
+  .schedule-actions .btn,
+  .kayit-actions .btn {
+    flex: 1 1 calc(50% - 0.35rem);
+    min-width: min(100%, 9.5rem);
     width: auto;
-    flex: 1 1 auto;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .gallery-filter-btn {
+    font-size: 0.74rem;
+    padding-inline: 0.45rem;
   }
 
   .utility-bar__actions a:not(.utility-bar__social a) {
