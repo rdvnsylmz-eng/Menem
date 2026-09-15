@@ -1896,9 +1896,22 @@ body > header.header__container {
   background: var(--color-background);
 }
 
+.popup--poster {
+  width: min(100%, 420px);
+}
+
+.popup--poster img {
+  max-height: min(64vh, 520px);
+  margin-bottom: clamp(0.4rem, 1vh, 0.7rem);
+}
+
 @media (max-height: 700px) {
   .popup img {
     max-height: 38vh;
+  }
+
+  .popup--poster img {
+    max-height: 48vh;
   }
 
   .popup p {

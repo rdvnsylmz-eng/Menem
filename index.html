@@ -25,7 +25,7 @@
       href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=38" />
+    <link rel="stylesheet" href="styles.css?v=39" />
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QW8VXPZ7DR"></script>
     <script>
@@ -69,11 +69,11 @@
   </head>
   <body>
     <div class="popup-overlay" id="popupOverlay" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
-      <div class="popup">
-        <img src="assets/popupg.jpg" alt="Menemen GSK Futbol Akademisi">
+      <div class="popup" id="popupBox">
+        <img id="popupImage" src="assets/popupg.jpg" alt="Menemen GSK Futbol Akademisi">
         <h2 id="popupTitle">MenemenGSK</h2>
-        <p>Profesyonel antrenörler eşliğinde çocuklarımızın gelişimini destekliyoruz.</p>
-        <a class="btn btn--primary" href="kayit.html">Ön Kayıt</a>
+        <p id="popupText">Profesyonel antrenörler eşliğinde çocuklarımızın gelişimini destekliyoruz.</p>
+        <a class="btn btn--primary" id="popupCta" href="kayit.html">Ön Kayıt</a>
         <button type="button" class="popup__close" onclick="closePopup()">Kapat</button>
       </div>
     </div>
@@ -392,14 +392,35 @@
 
     <script src="menu.js?v=10"></script>
     <script>
-      window.onload = function () {
-        if (sessionStorage.getItem("popupShown")) return;
-        setTimeout(function () {
-          if (document.body.classList.contains("nav-open")) return;
-          document.getElementById("popupOverlay").style.display = "flex";
-          sessionStorage.setItem("popupShown", "1");
-        }, 1000);
-      };
+      (function () {
+        var CAMPAIGN_END = new Date("2026-09-23T23:59:59+03:00");
+        var isCampaign = Date.now() <= CAMPAIGN_END.getTime();
+        var popupKey = isCampaign ? "popupShown_yetenek2026" : "popupShown";
+
+        if (isCampaign) {
+          var box = document.getElementById("popupBox");
+          var img = document.getElementById("popupImage");
+          var title = document.getElementById("popupTitle");
+          var text = document.getElementById("popupText");
+          var cta = document.getElementById("popupCta");
+          box.classList.add("popup--poster");
+          img.src = "assets/popup-yetenek-taramasi.jpg";
+          img.alt = "Yetenek Taraması — Seçmeler 24-25 Eylül 2026";
+          title.textContent = "Yetenek Taraması";
+          text.textContent = "Seçmeler 24–25 Eylül 2026. 2013–2017 doğumlular.";
+          cta.href = "tel:+905321641555";
+          cta.textContent = "Ara: 0532 164 15 55";
+        }
+
+        window.onload = function () {
+          if (sessionStorage.getItem(popupKey)) return;
+          setTimeout(function () {
+            if (document.body.classList.contains("nav-open")) return;
+            document.getElementById("popupOverlay").style.display = "flex";
+            sessionStorage.setItem(popupKey, "1");
+          }, 1000);
+        };
+      })();
 
       function closePopup() {
         document.getElementById("popupOverlay").style.display = "none";
