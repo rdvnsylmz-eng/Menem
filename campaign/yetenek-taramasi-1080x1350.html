@@ -95,7 +95,7 @@
       position: relative;
       z-index: 2;
       height: 100%;
-      padding: 48px 64px 42px;
+      padding: 40px 56px 38px;
       display: flex;
       flex-direction: column;
     }
@@ -105,27 +105,27 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 36px;
-      padding-top: 4px;
+      gap: 42px;
+      padding-top: 2px;
     }
 
     .crests img {
-      width: 118px;
-      height: 118px;
+      width: 176px;
+      height: 176px;
       object-fit: contain;
-      filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.45));
+      filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.5));
     }
 
     .crests__divider {
       width: 1px;
-      height: 64px;
+      height: 96px;
       background: linear-gradient(180deg, transparent, var(--gold-line), transparent);
     }
 
     .rule {
       width: 100%;
       height: 1px;
-      margin: 22px 0 18px;
+      margin: 16px 0 14px;
       background: linear-gradient(90deg, transparent, var(--gold-line), transparent);
     }
 
@@ -133,7 +133,7 @@
     .headline {
       text-align: center;
       font-family: "Bebas Neue", Impact, sans-serif;
-      font-size: 118px;
+      font-size: 108px;
       line-height: 0.9;
       letter-spacing: 0.06em;
       background: linear-gradient(180deg, #f0d78a 0%, #c9a24a 48%, #9a7428 100%);
@@ -264,17 +264,18 @@
       border-radius: 2px;
     }
 
-    .gift__kicker {
-      font-size: 10px;
+    .gift__note {
+      font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.28em;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
       color: var(--turquoise);
       margin-bottom: 6px;
     }
 
     .gift__title {
       font-family: "Bebas Neue", Impact, sans-serif;
-      font-size: 28px;
+      font-size: 26px;
       line-height: 1.05;
       letter-spacing: 0.04em;
       color: var(--white);
@@ -320,9 +321,9 @@
 
     <div class="content">
       <header class="crests">
-        <img src="assets/gokordu-crest.png" alt="GÖKORDU SPOR KULÜBÜ" width="118" height="118" />
+        <img src="assets/gokordu-crest.png" alt="GÖKORDU SPOR KULÜBÜ" width="176" height="176" />
         <div class="crests__divider" aria-hidden="true"></div>
-        <img src="assets/menemen-crest.png" alt="MENEMEN GELİŞİM SPOR KULÜBÜ" width="118" height="118" />
+        <img src="assets/menemen-crest.png" alt="MENEMEN GELİŞİM SPOR KULÜBÜ" width="176" height="176" />
       </header>
 
       <div class="rule" aria-hidden="true"></div>
@@ -352,6 +353,7 @@
       <section class="gift">
         <img src="assets/gift-kit.jpg" alt="" width="92" height="92" />
         <div>
+          <p class="gift__note">Seçilen sporcular için</p>
           <p class="gift__title">KRAMPON + TAM TAKIM
 SPOR MALZEMESİ HEDİYESİ</p>
         </div>
