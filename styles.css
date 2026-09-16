@@ -1905,8 +1905,9 @@ body > header.header__container {
 }
 
 .popup--poster img {
-  max-height: min(64vh, 520px);
-  margin-bottom: clamp(0.4rem, 1vh, 0.7rem);
+  max-height: min(46vh, 360px);
+  margin-bottom: clamp(0.35rem, 0.9vh, 0.6rem);
+  min-height: 0;
 }
 
 @media (max-height: 700px) {
@@ -1915,7 +1916,7 @@ body > header.header__container {
   }
 
   .popup--poster img {
-    max-height: 48vh;
+    max-height: 34vh;
   }
 
   .popup p {
