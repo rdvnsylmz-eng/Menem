@@ -2219,6 +2219,43 @@ body > header.header__container {
   gap: 0.9rem;
 }
 
+.restructuring__poster {
+  margin: 0 auto var(--space-6);
+  max-width: min(100%, 420px);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md, 0 12px 32px rgba(0, 20, 50, 0.12));
+}
+
+.restructuring__poster img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.restructuring__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin: 0 0 var(--space-6);
+}
+
+.restructuring__actions .btn {
+  min-width: min(100%, 220px);
+}
+
+.restructuring__body a {
+  color: var(--color-primary);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.restructuring__body a:hover {
+  color: var(--color-accent, var(--color-primary));
+}
+
 .restructuring__footer > p {
   margin: 0;
   font-size: 1.02rem;
