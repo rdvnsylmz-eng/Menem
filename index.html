@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <title>Menemen GSK | Menemen Gelişim Spor Kulübü Futbol Branşı</title>
     <meta name="description" content="Menemen Gelişim Spor Kulübü (Menemen GSK) futbol branşı; 4 yaş ve üzeri çocuk ve gençler için UEFA lisanslı antrenörler eşliğinde profesyonel futbol altyapı eğitimi." />
     <link rel="canonical" href="https://menemengsk.com/index.html" />
@@ -25,7 +26,7 @@
       href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=42" />
+    <link rel="stylesheet" href="styles.css?v=43" />
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QW8VXPZ7DR"></script>
     <script>
@@ -49,7 +50,7 @@
       "telephone": "+90 532 164 15 55",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "30 Ağustos Mahallesi 7202 Sokak No: 4, Menemen Belediyesi Ulukent Caner Ok Spor Tesisleri",
+        "streetAddress": "30 Ağustos Mahallesi 7202 Sokak No: 2, Menemen Belediyesi Ulukent Caner Ok Spor Tesisleri",
         "addressLocality": "Menemen",
         "addressRegion": "İzmir",
         "addressCountry": "TR"
@@ -102,7 +103,31 @@
         </p>
         <div class="hero__actions">
           <a class="btn btn--primary" href="kayit.html">Ön Kayıt <i class="ri-arrow-right-line" aria-hidden="true"></i></a>
-          <a class="btn btn--secondary" href="vizyon.html">Kulübü Keşfet</a>
+          <a class="btn btn--secondary" href="#tanitim">Tanıtımı İzle</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--dark video-feature" id="tanitim" aria-labelledby="video-title">
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <span class="section__eyebrow">Tanıtım</span>
+            <h2 class="section__title" id="video-title">Kulübü yakından tanı</h2>
+            <p class="section__lead">Sahadan kısa bir bakış — Menemen GSK futbol branşı.</p>
+          </div>
+        </div>
+        <div class="video-feature__frame reveal" data-video-id="rXGtV8d-GWQ">
+          <button type="button" class="video-feature__play" aria-label="Tanıtım videosunu oynat">
+            <img
+              src="https://img.youtube.com/vi/rXGtV8d-GWQ/maxresdefault.jpg"
+              alt="Menemen GSK tanıtım videosu önizleme"
+              width="1280"
+              height="720"
+              loading="lazy"
+            />
+            <span class="video-feature__icon" aria-hidden="true"><i class="ri-play-fill"></i></span>
+          </button>
         </div>
       </div>
     </section>
@@ -324,20 +349,6 @@
       </div>
     </section>
 
-    <section class="section section--dark" aria-labelledby="video-title">
-      <div class="container">
-        <div class="section__head">
-          <div>
-            <span class="section__eyebrow">Tanıtım</span>
-            <h2 class="section__title" id="video-title">Menemen GSK Futbol Branşı</h2>
-          </div>
-        </div>
-        <div class="video-container reveal">
-          <iframe src="https://www.youtube.com/embed/rXGtV8d-GWQ?si=uF4byghoRHgHTX6r" title="Menemen GSK YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
-        </div>
-      </div>
-    </section>
-
     <section class="section section--light" aria-labelledby="faq-title">
       <div class="container">
         <div class="section__head">
@@ -425,8 +436,23 @@
       function closePopup() {
         document.getElementById("popupOverlay").style.display = "none";
       }
+
+      (function () {
+        var frame = document.querySelector(".video-feature__frame");
+        if (!frame) return;
+        var playBtn = frame.querySelector(".video-feature__play");
+        if (!playBtn) return;
+        playBtn.addEventListener("click", function () {
+          var id = frame.getAttribute("data-video-id");
+          if (!id) return;
+          frame.innerHTML =
+            '<iframe src="https://www.youtube-nocookie.com/embed/' +
+            id +
+            '?autoplay=1&rel=0" title="Menemen GSK tanıtım videosu" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
+        });
+      })();
     </script>
-    <script src="footer.js?v=7"></script>
+    <script src="footer.js?v=8"></script>
     <script src="whatsapp.js"></script>
     <script src="scroll-effects.js"></script>
   </body>

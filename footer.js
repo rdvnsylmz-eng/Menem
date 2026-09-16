@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
           <ul class="footer__contact-list">
             <li>
               <i class="ri-map-pin-2-line" aria-hidden="true"></i>
-              <span>30 Ağustos Mah. 7202 Sk No:4<br />Menemen Belediyesi Ulukent Caner Ok Spor Tesisleri<br />Menemen / İzmir</span>
+              <span>30 Ağustos Mah. 7202 Sk No:2<br />Menemen Belediyesi Ulukent Caner Ok Spor Tesisleri<br />Menemen / İzmir</span>
             </li>
             <li>
               <i class="ri-phone-line" aria-hidden="true"></i>

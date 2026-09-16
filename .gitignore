@@ -5,3 +5,14 @@ desktop.ini
 .env
 .env.*
 _check-enc.js
+
+# Local deploy / DNS automation junk (not site content)
+node_modules/
+package.json
+package-lock.json
+_cf_chrome_profile/
+_isim_chrome_profile/
+_cf_*
+_isim_*
+assets/new/
+assets/proof/
