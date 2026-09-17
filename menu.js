@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
   navWrapper.innerHTML = `
     <div class="utility-bar">
       <div class="utility-bar__inner">
-        <p class="utility-bar__note">Menemen Gelişim Spor Kulübü — Futbol Branşı</p>
+        <p class="utility-bar__note">Menemen Gelişim Spor Kulübü</p>
         <div class="utility-bar__actions">
           <div class="utility-bar__social">
             <a href="https://www.instagram.com/menemengelisimsk/" target="_blank" rel="noopener" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <nav class="main-nav" aria-label="Ana menü">
       <div class="nav__logo">
         <a href="index.html"><img src="assets/logo.png" alt="Menemen Gelişim Spor Kulübü" width="120" height="120" /></a>
+        <p class="nav__brand-script" aria-hidden="true">Menemen Gelişim SK</p>
       </div>
       <button class="menu-toggle" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="primary-nav">
         <i class="ri-menu-line" aria-hidden="true"></i>
@@ -32,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <li class="mobile-nav-hero">
           <img src="assets/logo.png" alt="" width="56" height="56" />
           <div>
-            <p class="mobile-nav-hero__eyebrow">Menemen GSK</p>
+            <p class="mobile-nav-hero__eyebrow">Menemen Gelişim SK</p>
             <p class="mobile-nav-hero__title">Keşfet</p>
           </div>
         </li>
@@ -50,6 +51,12 @@ document.addEventListener("DOMContentLoaded", function () {
         <li class="link" data-index="05"><a href="duyurular.html">Duyurular</a></li>
         <li class="link" data-index="06"><a href="gallery.html">Galeri</a></li>
         <li class="link" data-index="07"><a href="iletisim.html">İletişim</a></li>
+        <li class="mobile-nav-signature" aria-hidden="true">
+          <span class="mobile-nav-signature__rule"></span>
+          <p class="mobile-nav-signature__brand">Menemen Gelişim SK</p>
+          <p class="mobile-nav-signature__tagline">Gelecek, burada gelişiyor.</p>
+          <p class="mobile-nav-signature__place">Caner Ok Spor Tesisleri · Menemen</p>
+        </li>
         <li class="mobile-nav-aside">
           <a class="mobile-nav-call" href="tel:+905321641555"><i class="ri-phone-fill" aria-hidden="true"></i> 0532 164 15 55</a>
           <div class="mobile-nav-socials">
@@ -75,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
     announce.setAttribute("aria-label", "Duyuru");
     announce.innerHTML = `
       <div class="container site-announce__inner">
-        <p><span class="site-announce__badge">Yeni</span> Ürkmez Spor Kulübü bünyemize katıldı — adı <strong>GÖKORDU Spor Kulübü</strong> olarak değiştirildi.</p>
+        <p><span class="site-announce__badge">Yeni</span> <strong>Gökordu Spor Kulübü</strong> bünyemize katıldı — faaliyetler ve lig müsabakaları Menemen Belediyesi Caner Ok Spor Tesisleri’nde sürecek.</p>
         <a href="duyurular.html">Detayı oku <i class="ri-arrow-right-line" aria-hidden="true"></i></a>
       </div>
     `;
