@@ -1,11 +1,24 @@
 document.addEventListener("DOMContentLoaded", function () {
+  // Clean address bar: /index.html → /  and  /page/index.html → /page/
+  (function cleanPrettyUrl() {
+    var path = window.location.pathname;
+    var search = window.location.search;
+    var hash = window.location.hash;
+    if (/\/index\.html$/i.test(path)) {
+      var pretty = path.replace(/\/index\.html$/i, "/") || "/";
+      history.replaceState(null, "", pretty + search + hash);
+    } else if (/^\/index\.html$/i.test(path)) {
+      history.replaceState(null, "", "/" + search + hash);
+    }
+  })();
+
   const navWrapper = document.querySelector(".nav-wrapper");
   if (!navWrapper) {
     console.error("HATA: '.nav-wrapper' elemanı bulunamadı.");
     return;
   }
 
-  const registerUrl = "kayit.html";
+  const registerUrl = "/kayit/";
 
   navWrapper.classList.add("site-header");
   navWrapper.innerHTML = `
@@ -17,13 +30,13 @@ document.addEventListener("DOMContentLoaded", function () {
             <a href="https://www.instagram.com/menemengelisimsk/" target="_blank" rel="noopener" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
             <a href="https://www.youtube.com/@menemengsk" target="_blank" rel="noopener" aria-label="YouTube"><i class="ri-youtube-fill"></i></a>
           </div>
-          <a href="iletisim.html">İletişim</a>
+          <a href="/iletisim/">İletişim</a>
         </div>
       </div>
     </div>
     <nav class="main-nav" aria-label="Ana menü">
       <div class="nav__logo">
-        <a href="index.html"><img src="assets/logo.png" alt="Menemen Gelişim Spor Kulübü" width="120" height="120" /></a>
+        <a href="/"><img src="/assets/logo.png" alt="Menemen Gelişim Spor Kulübü" width="120" height="120" /></a>
         <p class="nav__brand-script" aria-hidden="true">Menemen Gelişim SK</p>
       </div>
       <button class="menu-toggle" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="primary-nav">
@@ -31,26 +44,26 @@ document.addEventListener("DOMContentLoaded", function () {
       </button>
       <ul class="nav__links" id="primary-nav">
         <li class="mobile-nav-hero">
-          <img src="assets/logo.png" alt="" width="56" height="56" />
+          <img src="/assets/logo.png" alt="" width="56" height="56" />
           <div>
             <p class="mobile-nav-hero__eyebrow">Menemen Gelişim SK</p>
             <p class="mobile-nav-hero__title">Keşfet</p>
           </div>
         </li>
-        <li class="link" data-index="01"><a href="index.html">Ana Sayfa</a></li>
+        <li class="link" data-index="01"><a href="/">Ana Sayfa</a></li>
         <li class="link has-dropdown" data-index="02">
-          <a href="vizyon.html" aria-haspopup="true">Kulübümüz <i class="ri-arrow-down-s-line" aria-hidden="true"></i></a>
+          <a href="/vizyon/" aria-haspopup="true">Kulübümüz <i class="ri-arrow-down-s-line" aria-hidden="true"></i></a>
           <div class="dropdown" role="menu">
-            <a href="vizyon.html" role="menuitem">Vizyon &amp; Misyon</a>
-            <a href="antrenor.html" role="menuitem">Antrenörler</a>
-            <a href="index.html#yas-gruplari" role="menuitem">Yaş Grupları</a>
+            <a href="/vizyon/" role="menuitem">Vizyon &amp; Misyon</a>
+            <a href="/antrenor/" role="menuitem">Antrenörler</a>
+            <a href="/#yas-gruplari" role="menuitem">Yaş Grupları</a>
           </div>
         </li>
-        <li class="link" data-index="03"><a href="program.html">Antrenman Programı</a></li>
-        <li class="link" data-index="04"><a href="antrenor.html">Antrenörler</a></li>
-        <li class="link" data-index="05"><a href="duyurular.html">Duyurular</a></li>
-        <li class="link" data-index="06"><a href="gallery.html">Galeri</a></li>
-        <li class="link" data-index="07"><a href="iletisim.html">İletişim</a></li>
+        <li class="link" data-index="03"><a href="/program/">Antrenman Programı</a></li>
+        <li class="link" data-index="04"><a href="/antrenor/">Antrenörler</a></li>
+        <li class="link" data-index="05"><a href="/duyurular/">Duyurular</a></li>
+        <li class="link" data-index="06"><a href="/gallery/">Galeri</a></li>
+        <li class="link" data-index="07"><a href="/iletisim/">İletişim</a></li>
         <li class="mobile-nav-signature" aria-hidden="true">
           <span class="mobile-nav-signature__rule"></span>
           <p class="mobile-nav-signature__brand">Menemen Gelişim SK</p>
@@ -65,17 +78,26 @@ document.addEventListener("DOMContentLoaded", function () {
           </div>
         </li>
         <li class="mobile-cta">
-          <a href="kayit.html" class="btn btn--primary">Ön Kayıt</a>
+          <a href="${registerUrl}" class="btn btn--primary">Ön Kayıt</a>
         </li>
       </ul>
       <div class="nav__cta">
-        <a href="kayit.html" class="btn btn--primary">Ön Kayıt</a>
+        <a href="${registerUrl}" class="btn btn--primary">Ön Kayıt</a>
       </div>
     </nav>
   `;
 
+  function normalizePath(pathname) {
+    var p = pathname || "/";
+    p = p.replace(/\/index\.html$/i, "/");
+    p = p.replace(/\.html$/i, "/");
+    if (p.length > 1 && !p.endsWith("/")) p += "/";
+    if (p === "") p = "/";
+    return p;
+  }
+
   // Sitewide duyuru şeridi (duyurular sayfası hariç; sayfada yoksa ekle)
-  const onDuyurular = /duyurular\.html$/i.test(window.location.pathname);
+  const onDuyurular = /^\/duyurular\/?$/i.test(normalizePath(window.location.pathname));
   if (!onDuyurular && !document.querySelector(".site-announce")) {
     const announce = document.createElement("aside");
     announce.className = "site-announce";
@@ -83,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
     announce.innerHTML = `
       <div class="container site-announce__inner">
         <p><span class="site-announce__badge">Yeni</span> <strong>Gökordu Spor Kulübü</strong> bünyemize katıldı — faaliyetler ve lig müsabakaları Menemen Belediyesi Caner Ok Spor Tesisleri’nde sürecek.</p>
-        <a href="duyurular.html">Detayı oku <i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+        <a href="/duyurular/">Detayı oku <i class="ri-arrow-right-line" aria-hidden="true"></i></a>
       </div>
     `;
     navWrapper.insertAdjacentElement("afterend", announce);
@@ -93,12 +115,13 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll('a[href*="docs.google.com/forms"], a[href*="viewform"]').forEach(function (link) {
     const label = (link.textContent || "").toLowerCase();
     if (label.includes("kayıt") || label.includes("kayit") || link.classList.contains("btn")) {
-      link.setAttribute("href", "kayit.html");
+      link.setAttribute("href", registerUrl);
       link.removeAttribute("target");
       link.removeAttribute("rel");
     }
   });
-  document.querySelectorAll('a[href="kayit.html"]').forEach(function (link) {
+  document.querySelectorAll('a[href="/kayit/"], a[href="kayit.html"]').forEach(function (link) {
+    link.setAttribute("href", registerUrl);
     link.removeAttribute("target");
     if ((link.getAttribute("rel") || "").includes("noopener")) {
       link.removeAttribute("rel");
@@ -195,21 +218,16 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  const path = window.location.pathname;
-  const currentPage =
-    path.split("/").pop() ||
-    "index.html";
-  const normalized =
-    currentPage === "" || currentPage === "/" ? "index.html" : currentPage;
+  const current = normalizePath(window.location.pathname);
 
   navWrapper.querySelectorAll(".nav__links .link").forEach(function (item) {
     const link = item.querySelector(":scope > a");
     if (!link) return;
-    const href = (link.getAttribute("href") || "").split("#")[0];
-    if (href === normalized) {
+    const href = normalizePath((link.getAttribute("href") || "").split("#")[0] || "/");
+    if (href === current) {
       item.classList.add("active");
     }
-    if (normalized === "vizyon.html" && item.classList.contains("has-dropdown")) {
+    if (current === "/vizyon/" && item.classList.contains("has-dropdown")) {
       item.classList.add("active");
     }
   });

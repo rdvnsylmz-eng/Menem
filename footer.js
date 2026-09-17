@@ -1,13 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const registerUrl = "kayit.html";
+  const registerUrl = "/kayit/";
   const year = new Date().getFullYear();
 
   const footerHTML = `
     <footer class="site-footer">
       <div class="footer__main">
         <div class="footer__brand">
-          <a class="footer__brand-link" href="index.html">
-            <img src="assets/logo.png" alt="" width="72" height="72" />
+          <a class="footer__brand-link" href="/">
+            <img src="/assets/logo.png" alt="" width="72" height="72" />
             <span class="footer__brand-text">
               <strong>Menemen GSK</strong>
               <span>Menemen Gelişim Spor Kulübü</span>
@@ -26,20 +26,20 @@ document.addEventListener("DOMContentLoaded", function () {
           <div class="footer__col">
             <h4>Kulüp</h4>
             <ul>
-              <li><a href="index.html">Ana Sayfa</a></li>
-              <li><a href="vizyon.html">Vizyon &amp; Misyon</a></li>
-              <li><a href="antrenor.html">Antrenörler</a></li>
+              <li><a href="/">Ana Sayfa</a></li>
+              <li><a href="/vizyon/">Vizyon &amp; Misyon</a></li>
+              <li><a href="/antrenor/">Antrenörler</a></li>
               <li><a href="${registerUrl}">Ön Kayıt</a></li>
             </ul>
           </div>
           <div class="footer__col">
             <h4>Keşfet</h4>
             <ul>
-              <li><a href="index.html#yas-gruplari">Yaş Grupları</a></li>
-              <li><a href="program.html">Antrenman Programı</a></li>
-              <li><a href="duyurular.html">Duyurular</a></li>
-              <li><a href="gallery.html">Galeri</a></li>
-              <li><a href="iletisim.html">İletişim</a></li>
+              <li><a href="/#yas-gruplari">Yaş Grupları</a></li>
+              <li><a href="/program/">Antrenman Programı</a></li>
+              <li><a href="/duyurular/">Duyurular</a></li>
+              <li><a href="/gallery/">Galeri</a></li>
+              <li><a href="/iletisim/">İletişim</a></li>
             </ul>
           </div>
         </nav>
