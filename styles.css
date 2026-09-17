@@ -2242,6 +2242,12 @@ body > header.header__container {
   margin-bottom: var(--space-6);
 }
 
+.restructuring__head .section__title,
+.restructuring__head .section__eyebrow {
+  text-align: center;
+  width: 100%;
+}
+
 .restructuring__meta {
   margin: 0 0 0.85rem;
   font-size: 0.78rem;
