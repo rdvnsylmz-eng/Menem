@@ -2015,14 +2015,52 @@ body > header.header__container {
   background: var(--color-background);
 }
 
-.popup--poster {
-  width: min(100%, 420px);
+.popup.popup--poster {
+  /* Poster ~3375×4219 → width tracks height so the art fills edge-to-edge */
+  --popup-poster-max-h: min(70vh, 580px);
+  width: min(92vw, calc(var(--popup-poster-max-h) * 3375 / 4219), 440px);
+  padding: 0;
+  gap: 0;
+  overflow: hidden;
 }
 
-.popup--poster img {
-  max-height: min(46vh, 360px);
-  margin-bottom: clamp(0.35rem, 0.9vh, 0.6rem);
+.popup.popup--poster img {
+  width: 100%;
+  height: auto;
+  max-height: var(--popup-poster-max-h);
+  margin: 0;
+  border-radius: 0;
+  object-fit: contain;
+  object-position: center top;
+  background: transparent;
   min-height: 0;
+  flex: 0 0 auto;
+  display: block;
+}
+
+.popup.popup--poster h2,
+.popup.popup--poster p,
+.popup.popup--poster .btn,
+.popup.popup--poster .popup__close {
+  margin-left: clamp(0.85rem, 1.8vh, 1.25rem);
+  margin-right: clamp(0.85rem, 1.8vh, 1.25rem);
+  width: auto;
+  align-self: stretch;
+}
+
+.popup.popup--poster h2 {
+  margin-top: clamp(0.65rem, 1.4vh, 0.9rem);
+  margin-bottom: 0.25rem;
+}
+
+.popup.popup--poster p {
+  margin-bottom: clamp(0.55rem, 1.2vh, 0.85rem);
+}
+
+.popup.popup--poster .popup__close {
+  margin-top: 0.5rem;
+  margin-bottom: clamp(0.85rem, 1.8vh, 1.15rem);
+  width: auto;
 }
 
 @media (max-height: 700px) {
@@ -2030,8 +2068,8 @@ body > header.header__container {
     max-height: 38vh;
   }
 
-  .popup--poster img {
-    max-height: 34vh;
+  .popup.popup--poster {
+    --popup-poster-max-h: min(52vh, 420px);
   }
 
   .popup p {

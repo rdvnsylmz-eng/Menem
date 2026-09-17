@@ -26,7 +26,7 @@
       href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=62" />
+    <link rel="stylesheet" href="styles.css?v=65" />
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QW8VXPZ7DR"></script>
     <script>
@@ -75,7 +75,6 @@
         <h2 id="popupTitle">MenemenGSK</h2>
         <p id="popupText">Profesyonel antrenörler eşliğinde çocuklarımızın gelişimini destekliyoruz.</p>
         <a class="btn btn--primary" id="popupCta" href="kayit.html">Ön Kayıt</a>
-        <a class="btn btn--outline-dark" id="popupCtaCall" href="tel:+905321641555" hidden>Ara: 0532 164 15 55</a>
         <button type="button" class="popup__close" onclick="closePopup()">Kapat</button>
       </div>
     </div>
@@ -414,13 +413,11 @@
           var img = document.getElementById("popupImage");
           var title = document.getElementById("popupTitle");
           var text = document.getElementById("popupText");
-          var ctaCall = document.getElementById("popupCtaCall");
           box.classList.add("popup--poster");
           img.src = "assets/popup-yetenek-taramasi.jpg";
           img.alt = "Yetenek Taraması — Seçmeler 24-25 Eylül 2026";
           title.textContent = "Yetenek Taraması";
           text.textContent = "Seçmeler 24–25 Eylül 2026. 2013–2017 doğumlular.";
-          ctaCall.hidden = false;
         }
 
         window.onload = function () {
