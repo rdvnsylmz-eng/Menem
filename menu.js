@@ -96,8 +96,8 @@ document.addEventListener("DOMContentLoaded", function () {
     return p;
   }
 
-  // Sitewide duyuru şeridi (duyurular sayfası hariç; sayfada yoksa ekle)
-  const onDuyurular = /^\/duyurular\/?$/i.test(normalizePath(window.location.pathname));
+  // Sitewide duyuru şeridi (duyurular sayfası ve alt sayfaları hariç; sayfada yoksa ekle)
+  const onDuyurular = /^\/duyurular(\/.*)?$/i.test(normalizePath(window.location.pathname));
   if (!onDuyurular && !document.querySelector(".site-announce")) {
     const announce = document.createElement("aside");
     announce.className = "site-announce";
@@ -228,6 +228,9 @@ document.addEventListener("DOMContentLoaded", function () {
       item.classList.add("active");
     }
     if (current === "/vizyon/" && item.classList.contains("has-dropdown")) {
+      item.classList.add("active");
+    }
+    if (current.indexOf("/duyurular/") === 0 && href === "/duyurular/") {
       item.classList.add("active");
     }
   });

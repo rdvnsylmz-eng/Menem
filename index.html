@@ -26,7 +26,7 @@
       href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/styles.css?v=68" />
+    <link rel="stylesheet" href="/styles.css?v=71" />
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QW8VXPZ7DR"></script>
     <script>
@@ -81,10 +81,10 @@
 
     <div class="nav-wrapper"></div>
 
-    <aside class="site-announce" aria-label="Duyuru">
-      <div class="container site-announce__inner">
-        <p><span class="site-announce__badge">Yeni</span> <strong>Gökordu Spor Kulübü</strong> bünyemize katıldı — faaliyetler ve lig müsabakaları Menemen Belediyesi Caner Ok Spor Tesisleri’nde sürecek.</p>
-        <a href="/duyurular/">Detayı oku <i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+    <aside class="site-announce" aria-label="Duyurular" id="site-announce">
+      <div class="container site-announce__inner" id="site-announce-inner">
+        <p id="site-announce-text"><span class="site-announce__badge" id="site-announce-badge">Yeni</span> Futbolcu seçmelerimizde ilk değerlendirme tamamlandı — hafta sonu antrenmanlarına davet edilen sporcularımızı görün.</p>
+        <a href="/duyurular/ilk-degerlendirme/" id="site-announce-link">Detayı oku <i class="ri-arrow-right-line" aria-hidden="true"></i></a>
       </div>
     </aside>
 
@@ -401,7 +401,7 @@
 
     <div id="footer-placeholder"></div>
 
-    <script src="/menu.js?v=19"></script>
+    <script src="/menu.js?v=20"></script>
     <script>
       (function () {
         var CAMPAIGN_END = new Date("2026-09-23T23:59:59+03:00");
@@ -433,6 +433,73 @@
       function closePopup() {
         document.getElementById("popupOverlay").style.display = "none";
       }
+
+      (function () {
+        var items = [
+          {
+            badge: "Yeni",
+            html: "Futbolcu seçmelerimizde ilk değerlendirme tamamlandı — hafta sonu antrenmanlarına davet edilen sporcularımızı görün.",
+            href: "/duyurular/ilk-degerlendirme/"
+          },
+          {
+            badge: "Duyuru",
+            html: "<strong>Yetenek Taraması</strong> seçmeleri tamamlandı — sonuçları ve detayları görün.",
+            href: "/duyurular/yetenek-taramasi/"
+          },
+          {
+            badge: "Duyuru",
+            html: "<strong>Gökordu Spor Kulübü</strong> bünyemize katıldı — faaliyetler ve lig müsabakaları Menemen Belediyesi Caner Ok Spor Tesisleri’nde sürecek.",
+            href: "/duyurular/yapilanma/"
+          }
+        ];
+
+        var announce = document.getElementById("site-announce");
+        var inner = document.getElementById("site-announce-inner");
+        var badgeEl = document.getElementById("site-announce-badge");
+        var textEl = document.getElementById("site-announce-text");
+        var linkEl = document.getElementById("site-announce-link");
+
+        if (announce && inner && badgeEl && textEl && linkEl && items.length > 1) {
+          var index = 0;
+          var timer = null;
+          var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+          function render(i) {
+            var item = items[i];
+            badgeEl.textContent = item.badge;
+            textEl.innerHTML = "";
+            textEl.appendChild(badgeEl);
+            textEl.insertAdjacentHTML("beforeend", " " + item.html);
+            linkEl.setAttribute("href", item.href);
+          }
+
+          function advance() {
+            index = (index + 1) % items.length;
+            inner.classList.add("is-fading");
+            setTimeout(function () {
+              render(index);
+              inner.classList.remove("is-fading");
+            }, 300);
+          }
+
+          function start() {
+            if (timer || reduceMotion) return;
+            timer = setInterval(advance, 6000);
+          }
+
+          function stop() {
+            clearInterval(timer);
+            timer = null;
+          }
+
+          announce.addEventListener("mouseenter", stop);
+          announce.addEventListener("mouseleave", start);
+          announce.addEventListener("focusin", stop);
+          announce.addEventListener("focusout", start);
+
+          if (!reduceMotion) start();
+        }
+      })();
 
       (function () {
         var frame = document.querySelector(".video-feature__frame");

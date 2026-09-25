@@ -1091,6 +1091,34 @@ h1, h2, h3, h4, .section__header {
   gap: var(--space-5);
 }
 
+.duyuru-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-5);
+}
+
+.duyuru-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: var(--space-3);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-primary-light);
+}
+
+.duyuru-back:hover {
+  color: var(--color-primary);
+}
+
+.duyuru-back i {
+  transition: transform var(--duration) var(--ease);
+}
+
+.duyuru-back:hover i {
+  transform: translateX(-3px);
+}
+
 .coach-card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -2178,6 +2206,7 @@ body > header.header__container {
   gap: 0.75rem 1rem;
   padding-block: 0.65rem;
   flex-wrap: wrap;
+  transition: opacity 0.3s ease;
 }
 
 .site-announce p {
@@ -2214,6 +2243,16 @@ body > header.header__container {
   font-weight: 800;
   white-space: nowrap;
   flex-shrink: 0;
+}
+
+.site-announce__inner.is-fading {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-announce__inner {
+    transition: none;
+  }
 }
 
 .restructuring {
@@ -2397,6 +2436,67 @@ body > header.header__container {
   display: block;
 }
 
+.restructuring__poster--wide {
+  max-width: 100%;
+}
+
+.roster-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin: 0 0 var(--space-6);
+}
+
+.roster-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.1rem 1.2rem;
+  min-width: 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.roster-card__badge {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #001e5b;
+  background: var(--color-accent);
+  padding: 0.28rem 0.6rem;
+  border-radius: 4px;
+  margin-bottom: 0.75rem;
+}
+
+.roster-card__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.roster-card__list li {
+  position: relative;
+  padding-left: 1rem;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: var(--color-text);
+  text-align: left;
+}
+
+.roster-card__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-primary-light);
+}
+
 .restructuring__actions {
   display: flex;
   flex-wrap: wrap;
@@ -2474,6 +2574,16 @@ body > header.header__container {
   .restructuring__lead {
     font-size: 0.96rem;
     text-align: center;
+  }
+
+  .roster-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .roster-grid {
+    grid-template-columns: 1fr;
   }
 }
 
