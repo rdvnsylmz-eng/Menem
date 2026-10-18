@@ -2044,9 +2044,9 @@ body > header.header__container {
 }
 
 .popup.popup--poster {
-  /* Poster ~3375×4219 → width tracks height so the art fills edge-to-edge */
+  /* Poster ~1200×1500 → width tracks height so the art fills edge-to-edge */
   --popup-poster-max-h: min(70vh, 580px);
-  width: min(92vw, calc(var(--popup-poster-max-h) * 3375 / 4219), 440px);
+  width: min(92vw, calc(var(--popup-poster-max-h) * 1200 / 1500), 440px);
   padding: 0;
   gap: 0;
   overflow: hidden;
