@@ -74,6 +74,9 @@ html {
   scroll-padding-top: calc(var(--utility-h) + var(--header-h) + 12px);
   touch-action: manipulation;
   -ms-touch-action: manipulation;
+  overflow-x: hidden;
+  overflow-x: clip;
+  max-width: 100%;
 }
 
 body {
@@ -84,6 +87,9 @@ body {
   background: var(--color-background);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  overflow-x: clip;
+  width: 100%;
+  max-width: 100%;
   touch-action: manipulation;
   -ms-touch-action: manipulation;
 }
@@ -1739,7 +1745,6 @@ body > header.header__container {
 /* ========== Gallery page ========== */
 .gallery-page {
   background: var(--color-background);
-  padding-bottom: var(--space-10);
 }
 
 .gallery-title {
@@ -2117,7 +2122,8 @@ body > header.header__container {
 
 .reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  /* Drop transform entirely so it cannot extend scroll overflow */
+  transform: none;
 }
 
 .explore__grid .reveal:nth-child(2),
@@ -3367,13 +3373,17 @@ body > header.header__container {
     --nav-index-gap: clamp(2.15rem, 6vw, 2.6rem);
     order: 4;
     display: flex;
+    /* Body-level fixed drawer (reparented in menu.js). Size with inset —
+       avoid 100vh which inflates the iOS Safari scrollport when translated. */
     position: fixed;
-    inset: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     width: 100%;
     max-width: none;
-    height: 100vh;
-    height: 100dvh;
-    height: 100svh;
+    height: auto;
+    max-height: 100%;
     flex-direction: column;
     align-items: stretch;
     justify-content: flex-start;
@@ -3393,16 +3403,43 @@ body > header.header__container {
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
     z-index: 2101;
-    transform: translate3d(104%, 0, 0);
+    /* vw-based offset stays correct even while the closed panel is width:0 */
+    transform: translate3d(100vw, 0, 0);
     visibility: hidden;
     pointer-events: none;
-    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.45s;
+    contain: layout paint;
+    /* Collapse width/height only AFTER the slide-out finishes */
+    transition:
+      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0.45s,
+      width 0s linear 0.45s,
+      max-height 0s linear 0.45s,
+      padding 0s linear 0.45s;
   }
 
   .nav__links.active {
+    width: 100%;
+    max-height: 100%;
     transform: translate3d(0, 0, 0);
     visibility: visible;
     pointer-events: auto;
+    contain: none;
+    /* Expand instantly, then slide in */
+    transition:
+      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0.45s,
+      width 0s,
+      max-height 0s,
+      padding 0s;
+  }
+
+  /* Closed drawer: collapse the box so iOS WebKit cannot add ~100vh of
+     phantom scroll space below the footer after the panel slides away. */
+  .nav__links:not(.active) {
+    width: 0;
+    max-height: 0;
+    padding: 0;
+    overflow: hidden;
   }
 
   .mobile-nav-hero {
