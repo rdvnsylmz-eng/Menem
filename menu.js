@@ -135,7 +135,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const menuToggle = navWrapper.querySelector(".menu-toggle");
   const navLinks = navWrapper.querySelector(".nav__links");
+  const mainNav = navWrapper.querySelector(".main-nav");
+  const navCta = navWrapper.querySelector(".nav__cta");
   const dropdownParents = navWrapper.querySelectorAll(".has-dropdown");
+  const mobileNavMq = window.matchMedia("(max-width: 900px)");
+
+  // Keep the full-screen drawer on <body> for mobile so position:fixed is not
+  // trapped inside the sticky header (iOS Safari otherwise grows page height).
+  function syncMobileNavParent() {
+    if (!navLinks || !mainNav) return;
+    if (mobileNavMq.matches) {
+      if (navLinks.parentElement !== document.body) {
+        document.body.appendChild(navLinks);
+      }
+      navLinks.setAttribute("aria-hidden", navLinks.classList.contains("active") ? "false" : "true");
+    } else if (navLinks.parentElement !== mainNav) {
+      if (navCta) mainNav.insertBefore(navLinks, navCta);
+      else mainNav.appendChild(navLinks);
+      navLinks.removeAttribute("aria-hidden");
+    }
+  }
+  syncMobileNavParent();
+  if (typeof mobileNavMq.addEventListener === "function") {
+    mobileNavMq.addEventListener("change", syncMobileNavParent);
+  } else if (typeof mobileNavMq.addListener === "function") {
+    mobileNavMq.addListener(syncMobileNavParent);
+  }
 
   function closeMobileNav() {
     navLinks.classList.remove("active");
@@ -148,6 +173,7 @@ document.addEventListener("DOMContentLoaded", function () {
     icon.classList.add("ri-menu-line");
     document.body.classList.remove("nav-open");
     document.body.style.overflow = "";
+    if (mobileNavMq.matches) navLinks.setAttribute("aria-hidden", "true");
     dropdownParents.forEach(function (item) {
       item.classList.remove("is-open");
     });
@@ -162,6 +188,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function openMobileNav() {
     dismissPromoPopup();
+    syncMobileNavParent();
     navLinks.classList.add("active");
     overlay.classList.add("is-active");
     overlay.hidden = false;
@@ -172,6 +199,7 @@ document.addEventListener("DOMContentLoaded", function () {
     icon.classList.add("ri-close-line");
     document.body.classList.add("nav-open");
     document.body.style.overflow = "hidden";
+    navLinks.setAttribute("aria-hidden", "false");
   }
 
   if (menuToggle && navLinks) {
