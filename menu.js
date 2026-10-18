@@ -104,8 +104,8 @@ document.addEventListener("DOMContentLoaded", function () {
     announce.setAttribute("aria-label", "Duyuru");
     announce.innerHTML = `
       <div class="container site-announce__inner">
-        <p><span class="site-announce__badge">Yeni</span> <strong>Gökordu Spor Kulübü</strong> bünyemize katıldı — faaliyetler ve lig müsabakaları Menemen Belediyesi Caner Ok Spor Tesisleri’nde sürecek.</p>
-        <a href="/duyurular/">Detayı oku <i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+        <p><span class="site-announce__badge">Yeni</span> <strong>Sporcu Alımı</strong> — 2014 ve 2015 doğumlu futbolcular arıyoruz. Takımımızda yerini al!</p>
+        <a href="/duyurular/sporcu-alimi/">Detayı oku <i class="ri-arrow-right-line" aria-hidden="true"></i></a>
       </div>
     `;
     navWrapper.insertAdjacentElement("afterend", announce);

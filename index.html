@@ -26,7 +26,7 @@
       href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/styles.css?v=71" />
+    <link rel="stylesheet" href="/styles.css?v=72" />
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QW8VXPZ7DR"></script>
     <script>
@@ -83,8 +83,8 @@
 
     <aside class="site-announce" aria-label="Duyurular" id="site-announce">
       <div class="container site-announce__inner" id="site-announce-inner">
-        <p id="site-announce-text"><span class="site-announce__badge" id="site-announce-badge">Yeni</span> Futbolcu seçmelerimizde ilk değerlendirme tamamlandı — hafta sonu antrenmanlarına davet edilen sporcularımızı görün.</p>
-        <a href="/duyurular/ilk-degerlendirme/" id="site-announce-link">Detayı oku <i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+        <p id="site-announce-text"><span class="site-announce__badge" id="site-announce-badge">Yeni</span> <strong>Sporcu Alımı</strong> — 2014 ve 2015 doğumlu futbolcular arıyoruz. Takımımızda yerini al!</p>
+        <a href="/duyurular/sporcu-alimi/" id="site-announce-link">Detayı oku <i class="ri-arrow-right-line" aria-hidden="true"></i></a>
       </div>
     </aside>
 
@@ -401,12 +401,12 @@
 
     <div id="footer-placeholder"></div>
 
-    <script src="/menu.js?v=20"></script>
+    <script src="/menu.js?v=21"></script>
     <script>
       (function () {
-        var CAMPAIGN_END = new Date("2026-09-23T23:59:59+03:00");
+        var CAMPAIGN_END = new Date("2026-11-30T23:59:59+03:00");
         var isCampaign = Date.now() <= CAMPAIGN_END.getTime();
-        var popupKey = isCampaign ? "popupShown_yetenek2026" : "popupShown";
+        var popupKey = isCampaign ? "popupShown_sporcuAlimi2014_2015" : "popupShown";
 
         if (isCampaign) {
           var box = document.getElementById("popupBox");
@@ -414,10 +414,10 @@
           var title = document.getElementById("popupTitle");
           var text = document.getElementById("popupText");
           box.classList.add("popup--poster");
-          img.src = "assets/popup-yetenek-taramasi.jpg";
-          img.alt = "Yetenek Taraması — Seçmeler 24-25 Eylül 2026";
-          title.textContent = "Yetenek Taraması";
-          text.textContent = "Seçmeler 24–25 Eylül 2026. 2013–2017 doğumlular.";
+          img.src = "assets/duyuru-sporcu-alimi-2014-2015.jpg";
+          img.alt = "Sporcu Alımı — 2014-2015 doğumlu futbolcular arıyoruz";
+          title.textContent = "Sporcu Alımı";
+          text.textContent = "2014–2015 doğumlu futbolcular arıyoruz. Takımımızda yerini al!";
         }
 
         window.onload = function () {
@@ -438,6 +438,11 @@
         var items = [
           {
             badge: "Yeni",
+            html: "<strong>Sporcu Alımı</strong> — 2014 ve 2015 doğumlu futbolcular arıyoruz. Takımımızda yerini al!",
+            href: "/duyurular/sporcu-alimi/"
+          },
+          {
+            badge: "Duyuru",
             html: "Futbolcu seçmelerimizde ilk değerlendirme tamamlandı — hafta sonu antrenmanlarına davet edilen sporcularımızı görün.",
             href: "/duyurular/ilk-degerlendirme/"
           },
