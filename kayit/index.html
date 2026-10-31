@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Başvuru | Menemen GSK</title>
-    <meta name="description" content="Menemen Gelişim Spor Kulübü spor okulu ve resmi lig seçme başvurusu." />
+    <meta name="description" content="Menemen Gelişim Spor Kulübü spor okulu, resmi lig seçme ve Altın Eldiven Kaleci Okulu ön kayıt başvurusu." />
     <link rel="canonical" href="https://menemengsk.com/kayit/" />
     <meta name="theme-color" content="#001e5b" />
 
@@ -12,17 +12,17 @@
     <meta property="og:locale" content="tr_TR" />
     <meta property="og:site_name" content="Menemen GSK" />
     <meta property="og:title" content="Başvuru | Menemen GSK" />
-    <meta property="og:description" content="Spor okulu veya resmi lig seçme başvurusu." />
+    <meta property="og:description" content="Spor okulu, resmi lig seçme veya Altın Eldiven Kaleci Okulu ön kayıt." />
     <meta property="og:url" content="https://menemengsk.com/kayit/" />
     <meta property="og:image" content="https://menemengsk.com/assets/fg1.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Başvuru | Menemen GSK" />
-    <meta name="twitter:description" content="Spor okulu veya resmi lig seçme başvurusu." />
+    <meta name="twitter:description" content="Spor okulu, resmi lig seçme veya Altın Eldiven Kaleci Okulu ön kayıt." />
     <meta name="twitter:image" content="https://menemengsk.com/assets/fg1.jpg" />
 
     <link rel="icon" href="/assets/logo.png" type="image/png" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/styles.css?v=73" />
+    <link rel="stylesheet" href="/styles.css?v=74" />
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QW8VXPZ7DR"></script>
     <script>
@@ -64,6 +64,17 @@
             data-path="secme"
           >
             Resmi Lig Seçmesi
+          </button>
+          <button
+            type="button"
+            class="kayit-switch__btn"
+            role="tab"
+            id="pathKaleciBtn"
+            aria-selected="false"
+            aria-controls="panelKaleci"
+            data-path="kaleci"
+          >
+            Altın Eldiven Kaleci Okulu Ön Kayıt
           </button>
         </div>
 
@@ -214,13 +225,86 @@
           </div>
         </div>
 
+        <!-- ALTIN ELDİVEN KALECİ OKULU -->
+        <div class="kayit-panel" id="panelKaleci" role="tabpanel" aria-labelledby="pathKaleciBtn" hidden>
+          <div class="kayit-form-panel">
+            <div class="kayit-form__success" id="kayitSuccessKaleci" hidden>
+              <p class="kayit-form__success-title">Ön kaydınız alındı</p>
+              <p>Altın Eldiven Kaleci Okulu başvurusu bize ulaştı. En kısa sürede sizinle iletişime geçeceğiz.</p>
+            </div>
+
+            <form
+              class="kayit-form"
+              id="kayitFormKaleci"
+              action="https://formspree.io/f/mvkgoagr"
+              method="POST"
+              novalidate
+              data-submit-label="Ön Kayıt Gönder"
+              data-age-max="45"
+            >
+              <input type="hidden" name="basvuru_tipi" value="Altın Eldiven Kaleci Okulu Ön Kayıt" />
+              <input type="hidden" name="_subject" value="Menemen GSK — Altın Eldiven Kaleci Okulu Ön Kayıt" />
+              <input type="text" name="_gotcha" class="kayit-form__honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+              <label class="kayit-form__field" for="kaleciVeliAd">
+                <span>Veli / başvuran adı soyadı</span>
+                <input id="kaleciVeliAd" name="veli_adi" type="text" required autocomplete="name" maxlength="80" />
+              </label>
+
+              <div class="kayit-form__grid">
+                <label class="kayit-form__field" for="kaleciTelefon">
+                  <span>Telefon</span>
+                  <input id="kaleciTelefon" name="telefon" type="tel" required autocomplete="tel" inputmode="tel" placeholder="05xx xxx xx xx" maxlength="20" />
+                </label>
+                <label class="kayit-form__field" for="kaleciEmail">
+                  <span>E-posta <em>(opsiyonel)</em></span>
+                  <input id="kaleciEmail" name="email" type="email" autocomplete="email" maxlength="120" />
+                </label>
+              </div>
+
+              <label class="kayit-form__field" for="kaleciSporcuAd">
+                <span>Sporcu adı soyadı</span>
+                <input id="kaleciSporcuAd" name="sporcu_adi" type="text" required maxlength="80" />
+              </label>
+
+              <label class="kayit-form__field" for="kaleciDogum">
+                <span>Sporcunun doğum tarihi</span>
+                <input id="kaleciDogum" name="dogum_tarihi" type="date" required inputmode="numeric" data-birth />
+              </label>
+
+              <label class="kayit-form__field" for="kaleciKulup">
+                <span>Mevcut kulüp <em>(yoksa “yok” yazın)</em></span>
+                <input id="kaleciKulup" name="mevcut_kulup" type="text" required maxlength="120" placeholder="Kulüp adı" />
+              </label>
+
+              <label class="kayit-form__field" for="kaleciDeneyim">
+                <span>Kaleci tecrübesi</span>
+                <select id="kaleciDeneyim" name="kaleci_tecrubesi" required>
+                  <option value="" disabled selected>Seçin</option>
+                  <option value="Yeni başlıyor">Yeni başlıyor</option>
+                  <option value="Amatör">Amatör</option>
+                  <option value="Profesyonel / lisanslı">Profesyonel / lisanslı</option>
+                </select>
+              </label>
+
+              <label class="kayit-form__field" for="kaleciNot">
+                <span>Not <em>(opsiyonel)</em></span>
+                <textarea id="kaleciNot" name="not" rows="2" maxlength="500" placeholder="Yaş grubu, uygun saat, ek bilgi…"></textarea>
+              </label>
+
+              <p class="kayit-form__error" data-error hidden role="alert"></p>
+              <button class="btn btn--primary kayit-form__submit" type="submit">Ön Kayıt Gönder</button>
+            </form>
+          </div>
+        </div>
+
         <p class="kayit-help">
           Sorunuz mu var?
           <a href="https://wa.me/905321641555?text=Merhaba%2C%20Menemen%20GSK%20ba%C5%9Fvuru%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener">WhatsApp</a>
           ·
           <a href="tel:+905321641555">0532 164 15 55</a>
           ·
-          <a href="/duyurular/sporcu-alimi/">Sporcu alımı duyurusu</a>
+          <a href="/duyurular/altin-eldiven-kaleci-akademisi/">Kaleci akademisi haberi</a>
         </p>
       </div>
     </main>
@@ -230,6 +314,6 @@
     <script src="/footer.js?v=9"></script>
     <script src="/whatsapp.js"></script>
     <script src="/scroll-effects.js"></script>
-    <script src="/kayit-form.js?v=9"></script>
+    <script src="/kayit-form.js?v=10"></script>
   </body>
 </html>
