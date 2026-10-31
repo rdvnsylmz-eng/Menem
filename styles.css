@@ -2446,6 +2446,70 @@ body > header.header__container {
   max-width: 100%;
 }
 
+.restructuring__body h2 {
+  margin: var(--space-6) 0 var(--space-3);
+  font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+  color: var(--color-primary);
+}
+
+.career-list {
+  list-style: none;
+  margin: 0 0 var(--space-5);
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.career-list li {
+  position: relative;
+  padding: 0.55rem 0.75rem 0.55rem 1.15rem;
+  border-left: 3px solid var(--color-accent, #f5c518);
+  background: rgba(0, 30, 91, 0.04);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: var(--color-text);
+}
+
+.career-list a {
+  color: var(--color-primary);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.career-list a:hover {
+  text-decoration: underline;
+}
+
+.haber-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin: 0 0 var(--space-6);
+}
+
+.haber-gallery__item {
+  margin: 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: rgba(0, 30, 91, 0.06);
+  box-shadow: var(--shadow-sm);
+}
+
+.haber-gallery__item img {
+  width: 100%;
+  height: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  display: block;
+}
+
+@media (min-width: 900px) {
+  .haber-gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 .roster-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2756,7 +2820,7 @@ body > header.header__container {
   align-items: stretch;
   gap: 0.5rem;
   margin: 0 auto var(--space-5);
-  max-width: min(100% - 2rem, 720px);
+  max-width: min(100% - 2rem, 860px);
   padding: 0.15rem;
   justify-content: stretch;
   overflow-x: auto;
@@ -2856,7 +2920,7 @@ body > header.header__container {
 
 .kayit-switch {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 4px;
   padding: 4px;
   margin-bottom: var(--space-4);
@@ -3115,10 +3179,16 @@ body > header.header__container {
     padding-block: var(--space-5) var(--space-8);
   }
 
+  .kayit-switch {
+    grid-template-columns: 1fr;
+    border-radius: var(--radius-md);
+  }
+
   .kayit-switch__btn {
-    font-size: 0.82rem;
+    font-size: 0.86rem;
     min-height: 44px;
-    padding-inline: 0.5rem;
+    padding-inline: 0.75rem;
+    border-radius: var(--radius-sm);
   }
 
   .kayit-form__grid {
